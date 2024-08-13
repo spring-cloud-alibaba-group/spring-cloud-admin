@@ -32,14 +32,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.alibaba.admin</groupId>
-            <artifactId>spring-cloud-admin-server</artifactId>
-            <version>${revision}</version>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-admin-server-ui</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.admin</groupId>
-            <artifactId>spring-cloud-admin-server-ui</artifactId>
-            <version>${revision}</version>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-admin-server</artifactId>
         </dependency>
     </dependencies>
 
@@ -53,7 +51,7 @@
             </activation>
             <dependencies>
                 <dependency>
-                    <groupId>com.alibaba.admin</groupId>
+                    <groupId>com.alibaba.cloud</groupId>
                     <artifactId>spring-cloud-admin-server-cloud</artifactId>
                     <!--fix for https://github.com/mojohaus/flatten-maven-plugin/issues/70 -->
                     <version>${revision}</version>
@@ -62,4 +60,5 @@
             </dependencies>
         </profile>
     </profiles>
+
 </project>
