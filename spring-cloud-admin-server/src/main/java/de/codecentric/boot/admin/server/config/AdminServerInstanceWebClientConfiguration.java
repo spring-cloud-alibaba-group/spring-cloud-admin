@@ -16,9 +16,13 @@
 
 package de.codecentric.boot.admin.server.config;
 
-import java.net.CookiePolicy;
-import java.util.List;
-
+import de.codecentric.boot.admin.server.domain.events.InstanceEvent;
+import de.codecentric.boot.admin.server.web.client.*;
+import de.codecentric.boot.admin.server.web.client.cookies.CookieStoreCleanupTrigger;
+import de.codecentric.boot.admin.server.web.client.cookies.JdkPerInstanceCookieStore;
+import de.codecentric.boot.admin.server.web.client.cookies.PerInstanceCookieStore;
+import de.codecentric.boot.admin.server.web.client.reactive.CompositeReactiveHttpHeadersProvider;
+import de.codecentric.boot.admin.server.web.client.reactive.ReactiveHttpHeadersProvider;
 import org.reactivestreams.Publisher;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
@@ -30,21 +34,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import de.codecentric.boot.admin.server.domain.events.InstanceEvent;
-import de.codecentric.boot.admin.server.web.client.BasicAuthHttpHeaderProvider;
-import de.codecentric.boot.admin.server.web.client.CompositeHttpHeadersProvider;
-import de.codecentric.boot.admin.server.web.client.HttpHeadersProvider;
-import de.codecentric.boot.admin.server.web.client.InstanceExchangeFilterFunction;
-import de.codecentric.boot.admin.server.web.client.InstanceExchangeFilterFunctions;
-import de.codecentric.boot.admin.server.web.client.InstanceWebClient;
-import de.codecentric.boot.admin.server.web.client.InstanceWebClientCustomizer;
-import de.codecentric.boot.admin.server.web.client.LegacyEndpointConverter;
-import de.codecentric.boot.admin.server.web.client.LegacyEndpointConverters;
-import de.codecentric.boot.admin.server.web.client.cookies.CookieStoreCleanupTrigger;
-import de.codecentric.boot.admin.server.web.client.cookies.JdkPerInstanceCookieStore;
-import de.codecentric.boot.admin.server.web.client.cookies.PerInstanceCookieStore;
-import de.codecentric.boot.admin.server.web.client.reactive.CompositeReactiveHttpHeadersProvider;
-import de.codecentric.boot.admin.server.web.client.reactive.ReactiveHttpHeadersProvider;
+import java.net.CookiePolicy;
+import java.util.List;
 
 @Configuration(proxyBeanMethods = false)
 @Lazy(false)
