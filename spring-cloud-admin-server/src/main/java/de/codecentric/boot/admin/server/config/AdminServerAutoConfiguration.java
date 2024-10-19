@@ -16,8 +16,17 @@
 
 package de.codecentric.boot.admin.server.config;
 
-import java.time.Duration;
-
+import de.codecentric.boot.admin.server.domain.entities.InstanceRepository;
+import de.codecentric.boot.admin.server.domain.entities.SnapshottingInstanceRepository;
+import de.codecentric.boot.admin.server.domain.events.InstanceEvent;
+import de.codecentric.boot.admin.server.eventstore.InMemoryEventStore;
+import de.codecentric.boot.admin.server.eventstore.InstanceEventPublisher;
+import de.codecentric.boot.admin.server.eventstore.InstanceEventStore;
+import de.codecentric.boot.admin.server.services.*;
+import de.codecentric.boot.admin.server.services.endpoints.ChainingStrategy;
+import de.codecentric.boot.admin.server.services.endpoints.ProbeEndpointsStrategy;
+import de.codecentric.boot.admin.server.services.endpoints.QueryIndexEndpointStrategy;
+import de.codecentric.boot.admin.server.web.client.InstanceWebClient;
 import lombok.extern.slf4j.Slf4j;
 import org.reactivestreams.Publisher;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -31,27 +40,7 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 
-import de.codecentric.boot.admin.server.domain.entities.InstanceRepository;
-import de.codecentric.boot.admin.server.domain.entities.SnapshottingInstanceRepository;
-import de.codecentric.boot.admin.server.domain.events.InstanceEvent;
-import de.codecentric.boot.admin.server.eventstore.InMemoryEventStore;
-import de.codecentric.boot.admin.server.eventstore.InstanceEventPublisher;
-import de.codecentric.boot.admin.server.eventstore.InstanceEventStore;
-import de.codecentric.boot.admin.server.services.ApiMediaTypeHandler;
-import de.codecentric.boot.admin.server.services.ApplicationRegistry;
-import de.codecentric.boot.admin.server.services.EndpointDetectionTrigger;
-import de.codecentric.boot.admin.server.services.EndpointDetector;
-import de.codecentric.boot.admin.server.services.HashingInstanceUrlIdGenerator;
-import de.codecentric.boot.admin.server.services.InfoUpdateTrigger;
-import de.codecentric.boot.admin.server.services.InfoUpdater;
-import de.codecentric.boot.admin.server.services.InstanceIdGenerator;
-import de.codecentric.boot.admin.server.services.InstanceRegistry;
-import de.codecentric.boot.admin.server.services.StatusUpdateTrigger;
-import de.codecentric.boot.admin.server.services.StatusUpdater;
-import de.codecentric.boot.admin.server.services.endpoints.ChainingStrategy;
-import de.codecentric.boot.admin.server.services.endpoints.ProbeEndpointsStrategy;
-import de.codecentric.boot.admin.server.services.endpoints.QueryIndexEndpointStrategy;
-import de.codecentric.boot.admin.server.web.client.InstanceWebClient;
+import java.time.Duration;
 
 @Configuration(proxyBeanMethods = false)
 @Conditional(SpringBootAdminServerEnabledCondition.class)

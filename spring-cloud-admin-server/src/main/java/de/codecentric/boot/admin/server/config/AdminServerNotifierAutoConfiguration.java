@@ -16,9 +16,11 @@
 
 package de.codecentric.boot.admin.server.config;
 
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-
+import de.codecentric.boot.admin.server.domain.entities.InstanceRepository;
+import de.codecentric.boot.admin.server.domain.events.InstanceEvent;
+import de.codecentric.boot.admin.server.notify.*;
+import de.codecentric.boot.admin.server.notify.filter.FilteringNotifier;
+import de.codecentric.boot.admin.server.notify.filter.web.NotificationFilterController;
 import org.apache.hc.client5.http.auth.AuthScope;
 import org.apache.hc.client5.http.auth.Credentials;
 import org.apache.hc.client5.http.auth.UsernamePasswordCredentials;
@@ -28,20 +30,12 @@ import org.apache.hc.core5.http.HttpHost;
 import org.reactivestreams.Publisher;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
-import org.springframework.boot.autoconfigure.condition.NoneNestedConditions;
+import org.springframework.boot.autoconfigure.condition.*;
 import org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.*;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -51,27 +45,8 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
-import de.codecentric.boot.admin.server.domain.entities.InstanceRepository;
-import de.codecentric.boot.admin.server.domain.events.InstanceEvent;
-import de.codecentric.boot.admin.server.notify.CompositeNotifier;
-import de.codecentric.boot.admin.server.notify.DingTalkNotifier;
-import de.codecentric.boot.admin.server.notify.DiscordNotifier;
-import de.codecentric.boot.admin.server.notify.FeiShuNotifier;
-import de.codecentric.boot.admin.server.notify.HipchatNotifier;
-import de.codecentric.boot.admin.server.notify.LetsChatNotifier;
-import de.codecentric.boot.admin.server.notify.MailNotifier;
-import de.codecentric.boot.admin.server.notify.MicrosoftTeamsNotifier;
-import de.codecentric.boot.admin.server.notify.NotificationTrigger;
-import de.codecentric.boot.admin.server.notify.Notifier;
-import de.codecentric.boot.admin.server.notify.NotifierProxyProperties;
-import de.codecentric.boot.admin.server.notify.OpsGenieNotifier;
-import de.codecentric.boot.admin.server.notify.PagerdutyNotifier;
-import de.codecentric.boot.admin.server.notify.RocketChatNotifier;
-import de.codecentric.boot.admin.server.notify.SlackNotifier;
-import de.codecentric.boot.admin.server.notify.TelegramNotifier;
-import de.codecentric.boot.admin.server.notify.WebexNotifier;
-import de.codecentric.boot.admin.server.notify.filter.FilteringNotifier;
-import de.codecentric.boot.admin.server.notify.filter.web.NotificationFilterController;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(NotifierProxyProperties.class)

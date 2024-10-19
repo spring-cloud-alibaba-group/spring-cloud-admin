@@ -16,8 +16,7 @@
 
 package de.codecentric.boot.admin.server.services;
 
-import java.util.logging.Level;
-
+import de.codecentric.boot.admin.server.domain.events.InstanceEvent;
 import org.reactivestreams.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +26,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Scheduler;
 import reactor.core.scheduler.Schedulers;
 
-import de.codecentric.boot.admin.server.domain.events.InstanceEvent;
+import java.util.logging.Level;
 
 public abstract class AbstractEventHandler<T extends InstanceEvent> {
 
