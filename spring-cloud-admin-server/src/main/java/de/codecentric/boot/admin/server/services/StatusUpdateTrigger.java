@@ -16,18 +16,17 @@
 
 package de.codecentric.boot.admin.server.services;
 
-import java.time.Duration;
-
+import de.codecentric.boot.admin.server.domain.events.InstanceEvent;
+import de.codecentric.boot.admin.server.domain.events.InstanceRegisteredEvent;
+import de.codecentric.boot.admin.server.domain.events.InstanceRegistrationUpdatedEvent;
+import de.codecentric.boot.admin.server.domain.values.InstanceId;
 import org.reactivestreams.Publisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import de.codecentric.boot.admin.server.domain.events.InstanceEvent;
-import de.codecentric.boot.admin.server.domain.events.InstanceRegisteredEvent;
-import de.codecentric.boot.admin.server.domain.events.InstanceRegistrationUpdatedEvent;
-import de.codecentric.boot.admin.server.domain.values.InstanceId;
+import java.time.Duration;
 
 public class StatusUpdateTrigger extends AbstractEventHandler<InstanceEvent> {
 

@@ -16,10 +16,10 @@
 
 package de.codecentric.boot.admin.server.services;
 
-import java.util.stream.Stream;
-
 import org.springframework.boot.actuate.endpoint.ApiVersion;
 import org.springframework.http.MediaType;
+
+import java.util.stream.Stream;
 
 public class ApiMediaTypeHandler {
 

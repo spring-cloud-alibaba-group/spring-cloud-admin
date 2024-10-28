@@ -16,18 +16,17 @@
 
 package de.codecentric.boot.admin.server.config;
 
+import de.codecentric.boot.admin.server.web.PathUtils;
+import de.codecentric.boot.admin.server.web.client.BasicAuthHttpHeaderProvider.InstanceCredentials;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.convert.DurationUnit;
+
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.convert.DurationUnit;
-
-import de.codecentric.boot.admin.server.web.PathUtils;
-import de.codecentric.boot.admin.server.web.client.BasicAuthHttpHeaderProvider.InstanceCredentials;
 
 import static java.util.Arrays.asList;
 

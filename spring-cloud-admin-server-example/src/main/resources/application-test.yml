@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: spring-cloud-admin-nacos
+
+  cloud:
+    nacos:
+      discovery:
+        username: 'nacos'
+        password: 'nacos'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  file:
+    name: admin-nacos.log
